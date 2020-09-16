@@ -32,7 +32,7 @@ public:
 
 		/* TEST 4 */
 		b1.addFirst(1);
-		std::cout<< "Hola\n";
+		//std::cout<< "Hola\n";
 		ASSERT_TRUE(2 == b1.length());
 		ASSERT_TRUE(!strcmp("[1, 2]", b1.toString().c_str()));
 		std::cout << " PASSED.\nTest 5";
