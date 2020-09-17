@@ -28,6 +28,8 @@ long fact_rec(int n) {
 }
 
 long fib_seq(int n) {
+
+	
 	return 0;
 }
 
