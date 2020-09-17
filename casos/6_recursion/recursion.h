@@ -26,6 +26,7 @@ long fact_seq(int n) {
 long fact_rec(int n) {
 	return 0;
 	//1
+	//2
 }
 
 long fib_seq(int n) {
