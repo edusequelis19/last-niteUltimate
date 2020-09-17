@@ -31,6 +31,7 @@ long fact_rec(int n) {
 	//3
 	//4
 	return 1;
+	return 2;
 }
 
 long fib_seq(int n) {
