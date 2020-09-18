@@ -85,8 +85,12 @@ public:
 		}
 
 		/* TEST 13 */
+		//std::cout<< "\ntamanio " << b1.length()<< "\n";
+		//std::cout<< "arrego " << b1.toString() << "\n"; 
 		ASSERT_TRUE(1 == b1.removeFirst());
 		ASSERT_TRUE(3 == b1.length());
+		//std::cout<< "tamanio " << b1.length()<< "\n";
+		//std::cout<< "arrego " << b1.toString() << "\n"; 
 		ASSERT_TRUE(!strcmp("[2, 3, 4]", b1.toString().c_str()));
 		std::cout << " PASSED.\nTest 14";
 		
