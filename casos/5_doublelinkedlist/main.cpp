@@ -43,7 +43,11 @@ public:
 		std::cout << " PASSED.\nTest 7";
 		
 		/* TEST 7 */
+		//std::cout<< "tamanio \n" << b1.length() << "\n";
+		//std::cout<< "arrego " << b1.toString() << "\n"; 
 		b1.add(3);
+		//std::cout<< "tamanio " << b1.length()<< "\n";
+		//std::cout<< "arrego " << b1.toString() << "\n"; 
 		ASSERT_TRUE(3 == b1.length());
 		ASSERT_TRUE(!strcmp("[1, 2, 3]", b1.toString().c_str()));
 		std::cout << " PASSED.\nTest 8";

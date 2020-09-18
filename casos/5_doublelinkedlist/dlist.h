@@ -155,23 +155,59 @@ T DList<T>::getFirst() const throw (NoSuchElement) {
 template <class T>
 void DList<T>::addFirst(T val) throw (OutOfMemory) {
 	DLink<T> *nuevo;
-	nuevo->value = val;
+
+	nuevo = new DLink<T> (val);
 	if(nuevo == 0){
 		throw OutOfMemory();
 	}
-	if(head == tail){
-		nuevo->next = NULL;
-		nuevo->previous = NULL;
+	if(head == NULL){
 		head = nuevo;
+		tail = nuevo;
 	}else{
 		nuevo-> next = head;
 		head-> previous = nuevo;
 		head = nuevo;
 	}
+	size = size+1;
 }
 
 template <class T>
 void DList<T>::add(T val) throw (OutOfMemory) {
+	bool nuevo_codigo = 0;
+	if(nuevo_codigo){
+		DLink<T> *newLink;
+
+	newLink = new DLink<T>(val);
+	if (newLink == 0) {
+		throw OutOfMemory();
+	}
+
+	if (empty()) {
+		head = newLink;
+		tail = newLink;
+	} else {
+		tail->next = newLink;
+		newLink->previous = tail;
+		tail = newLink;
+	}
+	size++;
+	}else{
+	DLink<T> *nuevo;
+	
+	nuevo = new DLink<T>(val);
+	if(nuevo == 0){
+		throw OutOfMemory();
+	}
+	if(head == NULL){
+		head = nuevo;
+		tail = nuevo;
+	}else{
+		tail->next = nuevo;
+		nuevo-> previous = tail;
+		tail = nuevo;
+	}
+	size++;
+	}
 }
 
 template <class T>
