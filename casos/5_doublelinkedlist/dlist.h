@@ -31,13 +31,27 @@ private:
 };
 
 template <class T>
-DLink<T>::DLink(T val) {}
+DLink<T>::DLink(T val) {
+	value = val;
+	previous = NULL;
+	next = NULL;
+
+}
 
 template <class T>
-DLink<T>::DLink(T val, DLink *prev, DLink* nxt) {}
+DLink<T>::DLink(T val, DLink *prev, DLink* nxt) {
+	value = val;
+	previous = prev;
+	next = nxt;
+
+}
 
 template <class T>
-DLink<T>::DLink(const DLink<T> &source) {}
+DLink<T>::DLink(const DLink<T> &source) {
+	value = source.value;
+	previous = source.prev;
+	next = source.next;
+}
 
 template <class T>
 class DList {
@@ -80,20 +94,39 @@ private:
 };
 
 template <class T>
-DList<T>::DList() {}
+DList<T>::DList() {
+	head = NULL;
+	tail = NULL;
+	size = 0;
+}
 
 template <class T>
 DList<T>::~DList() {
 	clear();
+	size = 0;
 }
 
 template <class T>
 bool DList<T>::empty() const {
+	if(head == tail){
+		return true;
+	}
 	return 0;
 }
 
 template <class T>
-int DList<T>::length() const {
+int DList<T>::length() const { 
+	if(head == NULL){
+		return 0;
+	}else{
+		DLink<T> *nuevo = head; 
+		int i = 1;
+		while(nuevo->next != NULL){
+			i++;
+			nuevo = nuevo->next;
+		}
+		return i;
+	}
 	return size;
 }
 
@@ -121,6 +154,20 @@ T DList<T>::getFirst() const throw (NoSuchElement) {
 
 template <class T>
 void DList<T>::addFirst(T val) throw (OutOfMemory) {
+	DLink<T> *nuevo;
+	nuevo->value = val;
+	if(nuevo == 0){
+		throw OutOfMemory();
+	}
+	if(head == tail){
+		nuevo->next = NULL;
+		nuevo->previous = NULL;
+		head = nuevo;
+	}else{
+		nuevo-> next = head;
+		head-> previous = nuevo;
+		head = nuevo;
+	}
 }
 
 template <class T>
