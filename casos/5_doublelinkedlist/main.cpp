@@ -192,6 +192,7 @@ public:
 		std::cout << " PASSED.\nTest 30";
 		
 		/* TEST 30 */
+		//std::cout<< "\nArreglo"<< b1.toString();
 		ASSERT_TRUE(6 == b1.lastIndexOf(1));
 		std::cout << " PASSED.\nTest 31";
 		

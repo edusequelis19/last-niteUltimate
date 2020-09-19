@@ -402,6 +402,18 @@ int DList<T>::indexOf(T val) const {
 
 template <class T>
 int DList<T>::lastIndexOf(T val) const {
+	DLink<T> *actual;
+	actual = head;
+	int index = -1;
+	int i = 0;
+	while(actual != NULL){
+		if (val == actual->value){
+			index = i;
+		}
+		i++;
+		actual = actual->next;
+	}
+	return index;
 }
 
 template <class T>
@@ -439,6 +451,34 @@ T DList<T>::remove(int index) throw (IndexOutOfBounds) {
 
 template <class T>
 bool DList<T>::removeFirstOcurrence(T val) {
+	DLink<T> *victim;
+
+	victim = head;
+	int i = 0;
+	while (victim != NULL)
+	{
+		if(victim->value == val){
+			if(i==0){
+				head=victim->next;
+				victim->next->previous = NULL;
+				delete victim;
+				size--;
+				return true;
+				break;
+			}
+			victim->previous->next= victim->next;
+			victim->next->previous = victim ->previous;
+			delete victim;
+			size --;
+			return true;
+			break;
+		}
+		victim = victim->next;
+		i++;
+	}
+	
+
+
 	return false;
 }
 
