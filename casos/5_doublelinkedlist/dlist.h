@@ -484,6 +484,32 @@ bool DList<T>::removeFirstOcurrence(T val) {
 
 template <class T>
 bool DList<T>::removeLastOcurrence(T val) {
+	DLink<T> *victim;
+
+	victim = tail;
+	int i = 0;
+	while (victim != NULL)
+	{
+		if(victim->value == val){
+			if(i==0)
+			{
+				tail=victim->previous;
+				victim->previous->next = NULL;
+				delete victim;
+				size--;
+				return true;
+				break;
+			}
+			victim->previous->next= victim->next;
+			victim->next->previous = victim ->previous;
+			delete victim;
+			size --;
+			return true;
+			break;
+		}
+		victim = victim->next;
+		i++;
+	}
 	return false;
 }
 
