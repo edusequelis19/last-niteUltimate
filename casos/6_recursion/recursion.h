@@ -12,36 +12,67 @@
 #include <iostream>
 
 long sum_seq(int n) {
-	return 0;
+	long acumulado = 0;
+	
+	for(int i = 0; i <= n; i++){
+		acumulado = acumulado + i;
+	}
+
+	return acumulado;
+
 }
 
 long sum_rec(int n) {
-	return 0;
+	long acumulado;
+	if (n == 0){
+		return 0;
+	}
+
+	
+
+	return n + sum_rec( n-1);
 }
 
 long fact_seq(int n) {
-	return 0;
+	long acumulado = 1;
+	for (int i = 1; i <= n; i++){
+		acumulado = acumulado*i;
+	}
+
+
+	return acumulado;
 }
 
 long fact_rec(int n) {
-	return 0;
-	//1
-	//2
+	
 
-	//3
-	//4
-	return 1;
-	return 2;
+	if(n == 1){
+		return 1;
+	}
+	return n*fact_rec(n-1);
 }
 
 long fib_seq(int n) {
+	int anterior, actual, sig;
 
-	
-	return 0;
+	anterior = 0;
+	actual = 1; 
+
+	for(int i = 1; i<n; i++){
+		sig = anterior + actual;
+		anterior = actual;
+		actual = sig;
+	}
+	return sig;
 }
 
 long fib_rec(int n) {
-	return 0;
+
+	if((n==1)||(n==2)){
+		return 1;
+	}else{
+	return (fib_rec(n-1) + fib_rec(n-2));
+	}
 }
 
 long gcd_seq(long a, long b) {

@@ -19,6 +19,7 @@ public:
 
 		/* TEST 1 */
 		std::cout << "Test 1...";
+		//std::cout<< sum_seq(100);
 		ASSERT_TRUE(sum_seq(100) == 5050);
 		std::cout << "PASSED.\nTest 2...";
 		
@@ -31,10 +32,12 @@ public:
 		std::cout << "PASSED.\nTest 4...";
 		
 		/* TEST 4 */
+		//std::cout<< fact_rec(7);
 		ASSERT_TRUE(fact_rec(7) == 5040);
 		std::cout << "PASSED.\nTest 5...";
 		
 		/* TEST 5 */
+		//std::cout<< fib_seq(10);
 		ASSERT_TRUE(fib_seq(10) == 55);
 		std::cout << "PASSED.\nTest 6...";
 		

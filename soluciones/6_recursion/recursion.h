@@ -74,7 +74,7 @@ long fib_rec(int n) {
 	if (n == 1 || n == 2) {
 		return 1;
 	} else {
-		return (fib_rec(n - 1) + fib_rec(n - 2));
+		return (fib_rec(n ) + fib_rec(n - 1));
 	}
 }
 
