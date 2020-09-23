@@ -46,6 +46,7 @@ public:
 		std::cout << "PASSED.\nTest 7...";
 		
 		/* TEST 7 */
+		std::cout<< gcd_seq(10, 22)<< " \n";
 		ASSERT_TRUE(gcd_seq(10, 22) == 2);
 		std::cout << "PASSED.\nTest 8...";
 		

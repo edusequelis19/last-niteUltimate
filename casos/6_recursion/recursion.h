@@ -75,51 +75,217 @@ long fib_rec(int n) {
 	}
 }
 
+
+// greatest common divisor
 long gcd_seq(long a, long b) {
-	return 0;
+	long primer, segundo;
+	long gcd = 1;
+	bool newcode = false;
+	if(newcode){
+		if(primer > segundo){
+			for(long i=1; i<=primer; i++){
+				if((primer%i==0)&&(segundo%i==0)){
+					gcd = i;
+				}
+			}	
+		}else{
+			for(long i=1; i<=segundo; i++){
+				if((primer%i==0)&&(segundo%i==0)){
+					gcd = i;
+				}
+			}
+		}
+	}else{
+		long aux;
+		while (b != 0) {
+			aux = b;
+			b = a % b;
+			a = aux;
+		}
+	}
+	return a;
 }
 
+// greatest common divisor
 long gcd_rec(long a, long b) {
-	return 0;
+	if(a%b == 0){
+		return b;
+	}
+			long aux;
+			aux = b;
+			b = a % b;
+			a = aux;
+
+	return gcd_rec(a-1, b-1);
 }
 
 bool find_seq(int arr[], int size, int val) {
+	int value = val;
+	
+	for(int i = 0; i< size; i++){
+		int val1 = arr[i];
+		if(val1 == value){
+			return true;
+		}
+	}
+	
 	return false;
 }
 
 bool find_rec(int arr[], int low, int high, int val) {
-	return false;
+	bool newcode = true;
+	if(newcode){
+		if(arr[high] == val){
+			return true;
+		}
+		if(high == low){
+			return false;
+		}
+	}else{
+		for(int i=low; low<high; i++){
+			int valarr = arr[i];
+			if(valarr == val){
+				return true;
+			}
+		}
+	}
+
+
+	return find_rec(arr, low, high-1, val);
 }
 
 int max_seq(int arr[], int size) {
-	return 0;
+	int arrValue = 0;
+	for(int i= 0; i<size-1; i++){
+		
+		if(arrValue <= arr[i]){
+			arrValue = arr[i];
+		} 
+
+	}
+
+	return arrValue;
 }
 
 int max_rec(int arr[], int low, int high) {
-	return 0;
+	if(high == low){
+		return arr[low];
+	}
+	if (arr[low]<= arr[high]){
+		arr[low] = arr[high];
+	}
+
+	return max_rec(arr, low, high-1);
 }
 
 int unimodal_seq(int arr[], int size) {
-	return 0;
+	int arrValue = 0;
+	int j;
+	for(int i= 0; i<size-1; i++){
+		
+		if(arrValue <= arr[i]){
+			arrValue = arr[i];
+			j = i;
+		} 
+
+	}
+	return j;
 }
 
 int unimodal_rec(int arr[], int low, int high) {
-	return 0;
+	bool nuevocodigo = true;
+	if(nuevocodigo){
+		int arrValue = 0;
+		int j;
+		for(int i= 0; i<high; i++){
+		
+		if(arrValue <= arr[i]){
+			arrValue = arr[i];
+			j = i;
+		} 
+
+	}
+	return j;
+	}else{
+		int size = high +1;
+
+		if (size < 3) {
+			return -1;
+		}
+
+		int mid;
+		int lower = 0;
+		int high1 = size - 1;
+		while (lower < high1) {
+			mid = (high1 + lower) / 2;
+			if (arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1]) {
+				return mid;
+			} else if (arr[mid - 1] < arr[mid] && arr[mid] < arr[mid + 1]) {
+				low = mid + 1;
+			} else if (arr[mid - 1] > arr[mid] && arr[mid] > arr[mid + 1]) {
+				high1 = mid - 1;
+			}
+		}
+		return lower;
+	}
+	//return unimodal_rec(arr, low, high);
 }
 
 int unimodal_rec(int arr[], int size) {
-	return 0;
+	int arrValue = 0;
+	int j;
+	for(int i= 0; i<size-1; i++){
+		
+	if(arrValue <= arr[i]){
+		arrValue = arr[i];
+		j = i;
+	} 
+
+}
+	return j;
 }
 
 int bs_seq(int arr[], int size, int val) {
-	return 0;
+	int low = 0;
+	int high = size-1;
+	int mid = (high + low)/2;
+
+	while(low<high){
+		mid = (high + low)/2;
+		if(val == arr[mid]){
+			return mid;
+		}
+		if(val < arr[mid]){
+			high = mid-1;
+		}else{
+			low = mid +1;
+		}
+	}
+	
+	return low;
+
 }
 
 int bs_aux(int arr[], int low, int high, int val) {
+	if(low > high){
+		return low;
+	}
+	int mid =(high+low)/2;
+	if(val==arr[mid]){
+		return mid;
+	}
+	if(val < arr[mid]){
+		return bs_aux(arr, low, mid-1, val);
+	}else{
+		return bs_aux(arr, mid+1, high, val);	
+	}
+
 	return 0;
 }
 
 int bs_rec(int arr[], int size, int val) {
-	return 0;
+	
+	return bs_aux(arr, 0, size-1,val);
+	
 }
 #endif /* RECURSION_H_ */
