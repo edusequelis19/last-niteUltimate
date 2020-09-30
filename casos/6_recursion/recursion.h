@@ -179,6 +179,22 @@ int max_rec(int arr[], int low, int high) {
 }
 
 int unimodal_seq(int arr[], int size) {
+/*
+SOLUCION DEL PROFE PARA RECURSIVA 
+int unimodal_rec(int arr[], int low, int high) {
+	if (low == high) {
+        return low;
+	}
+	if(arr[low] > arr[high]) {
+        return unimodal_rec(arr, low, high-1);
+	}
+    return unimodal_rec(arr, low+1, high);
+}
+
+int unimodal_rec(int arr[], int size) {
+	return unimodal_rec(arr, 0, size-1);
+}
+*/
 	int arrValue = 0;
 	int j;
 	for(int i= 0; i<size-1; i++){
