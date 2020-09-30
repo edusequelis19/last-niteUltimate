@@ -39,25 +39,84 @@ void Sorts<T>::swap(std::vector<T> &v, int i, int j) {
 
 template <class T>
 std::vector<T> Sorts<T>::bubbleSort(const std::vector<T> &source) {
-	std::vector<T> v(source);
-	return v;
+	std::vector<T> vector(source);
+	T auxiliar = vector[0];
+	for(int j=0; j<vector.size(); j++){
+		for(int i=1; i<vector.size(); i++){
+			if(vector[i-1]>vector[i]){
+				auxiliar = vector[i-1];
+				vector[i-1] = vector[i];
+				vector[i] = auxiliar;
+			}else{
+				auxiliar = vector[i];
+			}
+		}	
+	}
+	return vector;
 }
 
 template <class T>
 std::vector<T> Sorts<T>::selectionSort(const std::vector<T> &source) {
 	std::vector<T> v(source);
+	T auxiliar = v[0];
+	T pos = v[0];
+	for (int i = 0; i < v.size(); i++)
+	{
+		auxiliar = v[i];
+		pos = v[i];
+		for (int j = 0; j < v.size(); j++)
+		{
+			if(v[j]>v[i]){
+				auxiliar = v[i];
+				v[i]=v[j];
+				v[j]=auxiliar; 
+			}
+		}
+	}
 	return v;
 }
 
 template <class T>
 std::vector<T> Sorts<T>::insertionSort(const std::vector<T> &source) {
 	std::vector<T> v(source);
+	T auxiliar = v[0];
+	T current = v[0];
+	for(int i = 0; i<v.size();i++){
+		for(int j=0; j<v.size();j++){
+			current = v[j];
+			for(int k = j; k>0; k--){
+				if(v[k]<v[k-1]){
+					auxiliar = v[k];
+					v[k]=v[k-1];
+					v[k-1]=auxiliar;
+				}else{
+					k = 0;
+				}
+			}
+		}
+	}
+	
 	return v;
 }
 
 template <class T>
 std::vector<T> Sorts<T>::shellSort(const std::vector<T> &source) {
 	std::vector<T> v(source);
+	T auxiliar = v[0];
+	int h = 1;
+	for (int i = 2; (v.size())/i>=1; i++){
+		h = (v.size())/i;
+		for(int j = 0; j<v.size(); j++){
+			if(j+h <= v.size()){
+				if(v[j]>v[j+h]){
+					auxiliar = v[j];
+					v[j] = v[j+h];
+					v[j+h] = auxiliar;
+				}
+			}
+		}
+	}
+
 	return v;
 }
 
@@ -77,6 +136,9 @@ template <class T>
 std::vector<T> Sorts<T>::mergeSort(const std::vector<T> &source) {
 	std::vector<T> v(source);
 	std::vector<T> tmp(v.size());
+
+	if()
+
 
 	return v;
 }
