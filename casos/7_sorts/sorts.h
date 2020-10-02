@@ -123,13 +123,17 @@ std::vector<T> Sorts<T>::shellSort(const std::vector<T> &source) {
 template <class T>
 void Sorts<T>::copyArray(std::vector<T> &A, std::vector<T> &B, int low, int high) {
 	//std::vector<T> B(A);
+
+	/*
 	for (int i = low; i <= high; i++) {
 		A[i] = B[i];
 	}
+	*/
 }
 
 template <class T>
 void Sorts<T>::mergeArray(std::vector<T> &A, std::vector<T> &B, int low, int mid, int high) {
+	/*
 	int i, j, k;
 
 	i = low;
@@ -155,6 +159,7 @@ void Sorts<T>::mergeArray(std::vector<T> &A, std::vector<T> &B, int low, int mid
 			B[k++] = A[i];
 		}
 	}
+	*/
 }
 
 template <class T>
