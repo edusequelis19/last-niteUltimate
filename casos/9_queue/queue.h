@@ -45,22 +45,34 @@ public:
 
 template <class T>
 QueueVector<T>::QueueVector(int sze) throw (OutOfMemory) {
+	size = sze;
+	data = new T[size];
+	if(data == 0){
+		throw OutOfMemory();
+	}
+	head = 0;
+	tail = 0;
+	counter = 0;
 
 }
 
 template <class T>
 QueueVector<T>::~QueueVector() {
-
+	delete [] data;
+	size = 0;
+	head = 0;
+	tail = 0;
+	counter = 0;
 }
 
 template <class T>
 bool QueueVector<T>::empty() const {
-    return (counter == 0)? true : false;
+    return (counter == 0);
 }
 
 template <class T>
 bool QueueVector<T>::full() const {
-    return (counter == size)? true : false;
+    return (counter == size);
 }
 
 template <class T>
