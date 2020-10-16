@@ -499,7 +499,6 @@ bool EvalTree::find(char c) const {
 double EvalTree::eval(double x) const throw (IllegalAction) {
 	if(empty()) throw IllegalAction();
 	return root->eval(x);
-	
 	/*
 	if(empty()){
 		throw IllegalAction();
