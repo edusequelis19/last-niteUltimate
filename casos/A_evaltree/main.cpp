@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cstring>
 #include "unit.h"
-#include "evaltreeng.h"
+#include "evaltree.h"
 
 using namespace std;
 
@@ -67,6 +67,7 @@ public:
 		std::cout << " PASSED.\nTest 11";
 
 		/* TEST 11 */
+		//std::cout << "many leaves " << a.howManyLeaves();
 		ASSERT_TRUE(a.howManyLeaves() == 5);
 		std::cout << " PASSED.\nTest 12";
 

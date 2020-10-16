@@ -108,7 +108,6 @@ void TreeNode::postorder(std::stringstream &aux) const {
 }
 
 void TreeNode::preorder(std::stringstream &aux) const {
-
 	aux << value << " ";
 
     if(left != 0){
@@ -163,6 +162,7 @@ char TreeNode::minValue() const {
     }
 
 	return min_value;
+    
 }
 
 bool TreeNode::find(char val) const {
