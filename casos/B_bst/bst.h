@@ -37,17 +37,64 @@ public:
 };
 
 template <class T>
-TreeNode<T>::TreeNode(T val) {}
+TreeNode<T>::TreeNode(T val) {
+	value = val;
+	left = NULL;
+	right = NULL;
+}
 
 template <class T>
-TreeNode<T>::TreeNode(T val, TreeNode<T> *le, TreeNode<T> *ri) {}
+TreeNode<T>::TreeNode(T val, TreeNode<T> *le, TreeNode<T> *ri) {
+	value = val;
+	right = ri;
+	left = le;
+}
 
 template <class T>
 void TreeNode<T>::add(T val) {
+	// si val es menor que value
+	if(val<value){
+		//si left es null
+		if(left==NULL){
+			//Insertamos el nodo del lado izquierdo
+			left = new TreeNode<T>(val);
+		//sino es null 
+		}else{
+			//recursivamente insertamos el nodo sobre la rama izquierda
+			left->add(val);
+		}
+	}
+
+	//si val es mayor que value
+	if(val>value){
+		//si no tiene rama derecha 
+		if(right==NULL){
+			//insertamos el nodo en lado derecho
+			right = new TreeNode<T>(val);
+		//si tiene rama derecha
+		}else{
+			//recursivamente insertamos el nodo en la rama derecha
+			right->add(val);
+		}	
+	}
+
 }
 
 template <class T>
 bool TreeNode<T>::find(T val) {
+	//si val es el valor del nodo, return true
+	if(val == value){
+		return true;
+	}
+	//si val es menor que el valor del nodo, buscamos del lado izquierdo
+	if(val < value && left != NULL){
+		return left->find(val);
+	}
+	//si val es mayor que el valor del nodo, buscamos del lado derecho
+	if(val > value && right != NULL){
+		return right->find(val);
+	}
+	//si no lo encontramos regresamos false
 	return false;
 }
 
@@ -123,6 +170,14 @@ bool BST<T>::empty() const {
 
 template<class T>
 void BST<T>::add(T val) {
+	//si esta vacio
+	if(empty()){ 
+		//insertar un nuevo nodo en la raiz
+			root = new TreeNode<T>(val);
+		}else{
+			root->add(val);
+		}
+
 }
 
 template <class T>
@@ -135,6 +190,9 @@ void BST<T>::removeAll() {
 
 template <class T>
 bool BST<T>::find(T val) const {
+	
+	return root->find(val);
+
 }
 
 template <class T>
