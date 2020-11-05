@@ -54,11 +54,35 @@ void TreeNode::removeChilds() {
 }
 
 bool TreeNode::isFull() const {
+	//si no tiene hijos esta lleno
+	if(left == NULL && right == NULL){
+		return true;
+	}
+	//si tiene hijo izquierdo y esta lleno y tiene hijo derecho y esta
+	//lleno, entonces esta lleno
+	if(left!= NULL && right != NULL 
+	&& left->isFull() && right-> isFull()){
+		return true;
+	}
+	//de lo contrario devolver falso
 	return false;
 }
 
 int TreeNode::internalNodes() const {
-	return 0;
+	//Si no tiene hijos regresa 0
+	if(isLeaf()){
+		return 0;
+	}
+	int result = 1;
+	//si tiene un hijo, regresa los nodos internos del hijo
+	if(left != NULL){
+		result = result+ left->internalNodes();
+	}
+	if(right != NULL){
+		result = result+ right->internalNodes();
+	}
+
+	return result;
 }
 
 int TreeNode::depth() const {
@@ -77,7 +101,39 @@ int TreeNode::depth() const {
 }
 
 bool TreeNode::isPerfect() const {
-	return false;		
+		int le, ri;
+	
+	if (left == 0 && right == 0) {
+		return true;
+	}
+	
+	if (left != 0 && right != 0) {
+		le = left->depth();
+		ri = right->depth();
+		return (le == ri);
+	}
+	
+	return false;
+	
+	/*
+	int rightlevel = 0;
+	int leftlevel = 0;
+
+	if(right!=NULL){
+		rightlevel = rightlevel + 1;
+		right->isPerfect();
+	}
+	if(left!=NULL){
+		leftlevel = leftlevel + 1;
+		left->isPerfect();
+	}
+	if(rightlevel == leftlevel){
+		return true;
+	}else{
+		return false;
+	}
+	*/
+			
 }
 
 bool TreeNode::isLeaf() const {
@@ -86,7 +142,31 @@ bool TreeNode::isLeaf() const {
 
 
 bool TreeNode::isDegenerate() const {
-	return false;
+	if (isLeaf()) {
+		return false;
+	}
+	
+	if (left != 0 && right != 0) {
+		return false;
+	}
+	
+	if (left != 0) {
+		if (left->isLeaf()) {
+			return true;
+		} else {
+			return left->isDegenerate();
+		}
+	}
+	
+	if (right != 0) {
+		if (right->isLeaf()) {
+			return true;
+		} else {
+			return right->isDegenerate();
+		}
+	}
+	
+	return true;
 }
 
 class SimpleTree {
