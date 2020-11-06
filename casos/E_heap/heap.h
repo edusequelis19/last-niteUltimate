@@ -39,23 +39,43 @@ public:
 
 template <class T>
 Heap<T>::Heap(unsigned int sze) throw (OutOfMemory) {
+	size = sze;
+	count = 0;
+	data = new T[size];
+	if(data == NULL){
+		throw OutOfMemory();
+	}
 }
 
 template <class T>
 Heap<T>::~Heap() {
+	delete [] data;
+	data = NULL;
+	count = 0;
+	size = 0;
 }
 
 template <class T>
 bool Heap<T>::empty() const {
+	if(count == 0){
+		return true;
+	}
+	return false;
 }
 
 template <class T>
 bool Heap<T>::full() const {
+	if(count == size){
+		return true;
+	}
+
 	return false;
 }
 
 template <class T>
 unsigned int Heap<T>::parent(unsigned int pos) const {
+	
+
 	return 0;
 }
 
