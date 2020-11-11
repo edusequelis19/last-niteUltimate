@@ -74,19 +74,20 @@ bool Heap<T>::full() const {
 
 template <class T>
 unsigned int Heap<T>::parent(unsigned int pos) const {
-	
-
-	return 0;
+	return (pos-1)/2;
 }
 
 template <class T>
 unsigned int Heap<T>::left(unsigned int pos) const {
-	return 0;
+	
+	return (2*pos) + 1;
 }
 
 template <class T>
 unsigned int Heap<T>::right(unsigned int pos) const {
-	return 0;
+
+
+	return (2*pos) + 2;
 }
 
 template <class T>
@@ -97,22 +98,76 @@ void Heap<T>::swap(unsigned int i, unsigned int j) {
 }
 
 template <class T>
-void Heap<T>::heapify(unsigned int pos) {
+void Heap<T>::heapify(unsigned int posicion) {
+		unsigned int posicion_min = posicion;
+//Comparar el valor de la posicion es major con el valor de su hijo izquierdo
+	if(data[posicion]>data[left(posicion)] && left(posicion) <= count){
+	//La posicion mas pequenia seria la izquierda
+		posicion_min = left(posicion);
+	}
+//Comprar el valor de la posicion con el valor de su hijo derecho
+	if(data[posicion_min]>data[right(posicion)] && right(posicion) <= count){
+	//La posicion mas pequenia seria la izquierda
+		posicion_min = right(posicion);
+	}
+	//La posicion mas pequenia seria la derecha.
+
+//Si la posicion mas pequenia es diferente de la posicion
+	if(posicion_min != posicion){
+	//Hacemos swap entre la posicion y la posicion mas pequenia.
+	swap(posicion, posicion_min);
+	//ReheapDown sobre la posicion mas pequenia heapify(posicion mas pequenia)
+	heapify(posicion_min);
+	}
+
+
 }
 
 template <class T>
 void Heap<T>::add(T val) throw (Overflow) {
+	//Verificar que no este lleno el heap
+	if(full()){
+		throw Overflow();
+	}
+	//Obtener la siguiente posicion disponible
+
+	int posicion = count;
+
+	//Agregar el nuevo valor a la posicion disponible
+
+	data[posicion] = val;
+
+	//aumentar el count
+
+	count++;
+
+
+	//reheap Up 
+	//si el padre es mas grande, hacer swap
+	if(posicion > 0 && data[parent(posicion)] > val){
+		swap(posicion,parent(posicion));
+		posicion = parent(posicion);
+	}
 }
 
 template <class T>
 T Heap<T>::remove() throw (NoSuchElement) {
-	T aux;
 	
+	if(empty()){
+		NoSuchElement();
+	}
+
+	T aux = data[0];
+	count--;
+	data[0] = data[count];
+	//Hacer Reheap down
+	heapify(0);
 	return aux;
 }
 
 template <class T>
 void Heap<T>::clear() {
+	count = 0;
 }
 	
 
